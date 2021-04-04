@@ -3,6 +3,8 @@ import db from './database/initializeDB.js';
 import apiRoutes from './routes/apiRoutes.js';
 
 const app = express();
+const staticFolder = 'public';
+app.use(express.static(staticFolder));
 
 const PORT = process.env.PORT || 3000;
 
