@@ -1,6 +1,11 @@
-async function startFetch(){
-    const request = await fetch('/api/dining');
-    const halls = await request.json();
+async function windowActions(){
+    async function startFetch(){
+        const request = await fetch('/api/dining');
+        const halls = await request.json();
+        return halls;
+    }
+
+    const halls = await startFetch();
     let html = `
     <thead>
     <tr>
@@ -12,8 +17,7 @@ async function startFetch(){
     <tbody>`;
 
     let table = document.querySelector('.table');
-
-    halls.forEach(element => {
+    halls.data.forEach(element => {
         html += `<tr>
         <td>${element.hall_id}</td>
         <td>${element.hall_name}</td>
@@ -28,4 +32,4 @@ async function startFetch(){
 
 
 
-window.onload = startFetch();
+window.onload = windowActions;
